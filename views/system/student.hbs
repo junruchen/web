@@ -1,0 +1,92 @@
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <div class="row">
+            <div class="col-xs-3">
+                <h4>学生列表</h4>
+            </div>
+            <div class="col-xs-4">
+                <input class="form-control" placeholder="根据学号/姓名/班级搜索" type="text" id="title"/>
+            </div>
+            <div class="col-xs-2">
+                <button type="button" class="btn btn-default" onclick="search();"><i class="fa fa-search"></i> 查询
+                </button>
+            </div>
+            <div class="col-xs-1">
+                <a class="btn btn-default purple" href="/sys/student/add"><i class="fa fa-plus"></i> 添加</a>
+            </div>
+        </div>
+    </div>
+    <div class="panel-body">
+        <div class="table-responsive">
+            <table id="datatable" class="table table-bordered table-responsive "
+                   style="margin-bottom: 0px !important;border-bottom: none!important">
+            </table>
+        </div>
+    </div>
+</div>
+
+{{#extend "scripts"}}
+    <script>
+        $(function () {
+            search();
+        });
+
+        function search() {
+            var data = {
+                title: $.trim($('#title').val()),
+                identity:1,
+            };
+            new DataTable({
+                id: '#datatable',
+                paging: true,
+                pageSize: 10,
+                ajax: {
+                    url: '/sys/student',
+                    data: data
+                },
+                columns: [{
+                    "data": "stid",
+                    "title": "学生学号"
+                }, {
+                    "data": "name",
+                    "title": "学生姓名"
+                }, {
+                    "data": "className",
+                    "title": "学生班级"
+                }, {
+                    "data": null,
+                    "title": "操作"
+                }],
+                columnDefs: [
+                    {
+                        targets: 3,
+                        render: function (i, j, item) {
+                            var str = '<a href="/sys/student/edit/' + item._id + '">编辑</a>' + '&nbsp;&nbsp;&nbsp;<a href="javascript:del(\'' + item._id + '\');">删除</a>'
+                            return str;
+                        }
+                    }
+                ]
+            });
+        }
+
+
+        function del(id) {
+            bootbox.confirm("您确定要删除吗？", function (result) {
+                if (result) {
+                    my.ajax({
+                        url: '/sys/student/del/' + id,
+                        data: {id:id},
+                        success: function () {
+                            $.success('操作成功', null, null, function () {
+                                window.location.reload();
+                            });
+                        },
+                        error: function () {
+                            $.danger('网络异常，请联系管理员！');
+                        }
+                    });
+                }
+            });
+        }
+    </script>
+{{/extend}}

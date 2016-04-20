@@ -1,0 +1,67 @@
+<div class="marginLR marginBottom">
+    <div class="container">
+        <div class="row">
+            <div class="textColor paddTop col-md-10 col-md-offset-1">
+                <div class="borderStyle row">
+                    <div class="col-sm-2 paddTop2 paddBottom2">
+                        <span class="h4 textColor">通知中心</span>
+                    </div>
+                    <div class="col-sm-10">
+                        <div class="row">
+                            <div class="form-group col-xs-10 col-sm-6">
+                                <input type="text" class="form-control " placeholder="请输入关键字" id="title"/>
+                            </div>
+                            <button type="submit  col-xs-2 col-sm-2" onclick="search(1);" class="btn  btn-default col-xs-2">搜索</button>
+                        </div>
+                    </div>
+                </div>
+                <ul class="fontSize1 list" id="data-container">
+                </ul>
+                <!-- 分页 -->
+                <div class="text-center" id="page-container">
+                </div>
+                <!-- \.分页 -->
+            </div>
+        </div>
+    </div>
+</div>
+
+{{#extend "scripts"}}
+    <script>
+        $(function () {
+            search(1);
+        });
+        var $pageContainer = $('#page-container');
+        var $dataContainer = $('#data-container');
+        function search(pageNo) {
+            $.ajax({
+                url: '/notify',
+                type: 'post',
+                dataType: 'json',
+                data: {pageNo: pageNo, title: $.trim($('#title').val())},
+                success: function (ret) {
+                    if (ret.status == 0) {
+                        var html = '';
+                        if(ret.data.list.length == 0){
+                            html += '<li class="paddTop"><span>暂无数据</span></li>';
+                            $pageContainer.addClass('hidden');
+                        } else {
+                            $.each(ret.data.list, function (idx, item) {
+                                var type = notifyType[item.type];
+                                html += '<li class="paddTop">' +
+                                        '<span>[' + type + ']</span>&nbsp;' +
+                                        '<a href="/notify/detail/' + item._id + '">' + formatStr2(item.title) + '</a>' +
+                                        '<span class="textColor1 pull-right paddLeft">' + my.toDateStr(item.createdAt) + '</span>' +
+                                        '</li>';
+                            });
+                        }
+                        $dataContainer.html(html);
+                        pagination($pageContainer, ret.data.pageNo, ret.data.total, function (pageNo) {
+                            search(pageNo);
+                        });
+                    }
+                }
+            });
+        }
+    </script>
+{{/extend}}

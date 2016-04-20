@@ -1,261 +1,160 @@
-<!DOCTYPE html>
-<html lang="zh-CN">
-<head>
-  <meta charset="UTF-8">
-  <!--头部静态文件-->
-  {{> head_static}}
-</head>
-<body id="body" style="margin-top: 60px; touch-action: pan-y; -webkit-user-drag: none; -webkit-tap-highlight-color: rgba(0, 0, 0, 0);">
-<!--头部-->
-{{> header}}
-
-  <div id="main">
-
-    <div class="swiper-container swiper-container-horizontal swiper-container-fade">
-      <div class="swiper-wrapper" style="text-align: center">
-        <div class="swiper-slide swiper-slide-active" style="width: 1423px; opacity: 1; transform: translate3d(0px, 0px, 0px); background-image: url(http://www.veuts.com/images/home-pic.png); background-position: 50% 50%;">
-          <div class="middle-description">
-            <div class="middle-title">
-              <p>&nbsp;</p>
-              <p>
-                “购物纠结选尺码，太浪费时间了！”</p>
-              <h1>
-                <span class=" hidden-xs">VEUTS</span>帮你实现一键购物</h1>
-              <p>
-                We Only Need More Clothes To Choose, Not The Size</p>
-              <p>&nbsp;
-              </p>
-              <div class="background">
-              </div>
-            </div>
-            <p>
-              &nbsp;</p>
-            <p>
-              &nbsp;</p>
-            <p>
-              &nbsp;</p>
-            <p>
-              节省时间去选择更多喜爱的款式</p>
-            <div class="row">
-              <div class="col-xs-offset-2 col-xs-8 col-sm-offset-4 col-sm-4 col-lg-offset-5 col-lg-2">
-                <a href="http://www.veuts.com/Account/fillSize.aspx">
-                  <div style="width: 100%; border: 1px solid black">
-                    <table>
-                      <tbody><tr>
-                        <td width="80%" style=" padding: 5px; color: #f12685; font-size: 0.9em; font-weight: bold">立即去填写身材！</td>
-                        <td width="150" style="border-left: 1px; border-left-style: dashed">GO</td>
-                      </tr>
-                      </tbody></table>
-                  </div></a>
-              </div>
-            </div>
-            <p></p>
-            <p style="font-size: 0.9em">
-              从此购物就是如此高枕无忧</p>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="container-fluid">
-      <div class="row coupon-poster">
-        <div class="col-xs-12">
-          <div class="row">
-            <div class="col-xs-12 col-md-4 col-md-offset-4" style="text-align: center">
-              <p style="font-size: 1.6em; color: red; margin-top: 25%">最好的礼物</p>
-              <div class="row" style="margin-top: -10px">
-                <div class="col-xs-6" style="text-align: right">
-                  <p style="font-size: 3em; margin-bottom: 0px; font-family: &#39;Goudy Old Style&#39;"><i>70%</i></p>
-                  <p style="font-size: 2em; margin-bottom: 0px; margin-top: -20px; font-family: &#39;Goudy Old Style&#39;">OFF</p>
-                  <div class="split-line"></div>
+<!--首页 轮播-->
+<div class="bgColor">
+    <div class="container">
+        <div class="row">
+            <div id="myCarousel" class="carousel slide col-md-10 col-md-push-1">
+                <!-- 轮播（Carousel）指标 -->
+                <ol class="carousel-indicators bBottom">
+                    <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+                    <li data-target="#myCarousel" data-slide-to="1"></li>
+                    <li data-target="#myCarousel" data-slide-to="2"></li>
+                </ol>
+                <!-- 轮播（Carousel）项目 -->
+                <div class="carousel-inner">
+                    <div class="item active">
+                        <img src="imgs/index-1.jpg" alt="First slide" class="img-responsive">
+                    </div>
+                    <div class="item">
+                        <img src="imgs/index-2.jpg" alt="Second slide" class="img-responsive">
+                    </div>
+                    <div class="item text-center">
+                        <img src="imgs/index-3.jpg" alt="Third slide" class="img-responsive">
+                    </div>
                 </div>
-                <div class="col-xs-6" style="text-align: left">
-                  <p style="font-size: 3em; margin-bottom: 0px; font-family: &#39;Goudy Old Style&#39;"><i>2016</i></p>
-                  <p style="font-size: 2em; margin-bottom: 0px; margin-top: -20px; font-family: &#39;Goudy Old Style&#39;">NOW</p>
-                </div>
-              </div>
-              <p style="font-size: 1.4em">限量活动价上新</p>
-              <p style="font-size: 1.2em"><a href="http://www.veuts.com/page/mall/promotion.aspx"><span style="border: 1px solid black; padding: 8px">领取活动优惠券</span></a></p>
+                <!-- 轮播（Carousel）导航 -->
+                <a class="my-carousel-control left" href="#myCarousel"
+                   data-slide="prev"></a>
+                <a class="my-carousel-control right" href="#myCarousel"
+                   data-slide="next"></a>
             </div>
-          </div>
         </div>
-      </div>
     </div>
-    <div class="container" style="text-align: center">
-      <div class="row">
-        <div class="col-xs-12">
-          <br>
-          <h2>
-            从此让购买一件衣服</h2>
-          <h3>
-            10分钟变10秒钟</h3>
-          <br>
-          <br>
+</div>
+<!--首页 新闻模块-->
+<div class="text-center marginTop2">
+    <h4>新闻中心</h4>
+    <span class="glyphicon glyphicon-chevron-down"></span>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2" id="newsData">
+                <h4 id="newsTitle"></h4>
+                <h6 id="newsInfo"></h6>
+                <p id="newsDes"></p>
+                <a href="/news" class="btn morBtn col-sm-4 col-sm-offset-4 bgColor3 textColor2 marginTop">查看更多</a>
+            </div>
         </div>
-      </div>
-      <div class="row">
-        <div class="col-sm-4">
-          <div>
-                    <span style="color: white; background-color: #C9BC9C; border-radius: 50%; height: 32px;
-                        width: 32px; display: inline-block; vertical-align: middle; line-height: 32px;">
-                        1</span></div>
-          <p>
-            &nbsp;</p>
-          <a href="http://www.veuts.com/Account/Login.aspx">
-            <img src="/image/home-icon-2.png" style="width: 50%"></a>
-          <p>
-            &nbsp;</p>
-          <h4>                    <a href="http://www.veuts.com/Account/Login.aspx">
-
-            SIGN UP</a></h4>
-          <h3>                    <a href="http://www.veuts.com/Account/Login.aspx">
-
-            登录 veuts.com</a></h3>
-          <div style="border: 1px solid #B0ADAE; padding: 35px 20px 35px 20px; margin-top: 48px">
-            <span>登陆veuts的开始，就是为自己多出了更多选款轻松购物时间。</span>
-          </div>
-          <p>
-            &nbsp;</p>
-        </div>
-        <div class="col-sm-4">
-          <div>
-                    <span style="color: white; background-color: #C9BC9C; border-radius: 50%; height: 32px;
-                        width: 32px; display: inline-block; vertical-align: middle; line-height: 32px;">
-                        2</span></div>
-          <p>
-            &nbsp;</p><a href="http://www.veuts.com/solution.aspx">
-          <img src="/image/home-icon-1.png" style="width: 50%"></a>
-          <p>
-            &nbsp;</p>
-          <h4><a href="http://www.veuts.com/solution.aspx">
-            MEASUREMENTS</a></h4>
-          <h3><a href="http://www.veuts.com/solution.aspx">
-            轻松4步填写尺寸</a></h3>
-          <div style="border: 1px solid #B0ADAE; padding: 35px 20px 35px 20px; margin-top: 48px">
-            <span>仅一次身材数据填写，即可为心爱的衣服烙上专属的名字！ 　</span>
-          </div>
-          <p>
-            &nbsp;</p>
-        </div>
-        <div class="col-sm-4">
-          <div>
-                    <span style="color: white; background-color: #C9BC9C; border-radius: 50%; height: 32px;
-                        width: 32px; display: inline-block; vertical-align: middle; line-height: 32px;">
-                        3</span></div>
-          <p>
-            &nbsp;</p><a href="http://www.veuts.com/page/mall/classify.aspx">
-          <img src="/image/yijiangouwudai-.png" style="width: 50%"></a>
-          <p>
-            &nbsp;</p>
-          <h4><a href="http://www.veuts.com/page/mall/classify.aspx">
-            SHOPPING</a></h4>
-          <h3><a href="http://www.veuts.com/page/mall/classify.aspx">
-            永远一键购物</a></h3>
-          <div style="border: 1px solid #B0ADAE; padding: 35px 20px 35px 20px; margin-top: 48px">
-            <span>更不会因为不合适造成的退换货流程而感觉烦恼 <span style="color: transparent">☆☆☆☆☆☆</span></span>
-          </div>
-          <p>
-            &nbsp;</p>
-        </div>
-      </div>
     </div>
-
-  </div>
-  <!-- Modal -->
-  <div class="container compress">
-    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-      <div class="modal-dialog modal-lg">
-        <div class="modal-content">
-          <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
-              ×</button>
-            <h4 class="modal-title" id="myModalLabel">
-              Modal title</h4>
-          </div>
-          <div class="modal-body">
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-primary btn-ok" onclick="/*$(&#39;#myModal&#39;).modal(&#39;hide&#39;)*/">
-              确定</button>
-            <button type="button" class="btn btn-default btn-close" data-dismiss="modal">
-              关闭</button>
-          </div>
-        </div>
-        <!-- /.modal-content -->
-      </div>
-      <!-- /.modal-dialog -->
+</div>
+<!--首页 企业招聘模块-->
+<div class="marginTop2 bgColor1 paddBottom">
+    <div class="text-center paddTop">
+        <h4>企业招聘中心</h4>
+        <span class="textColor4">
+            ---------&nbsp;&nbsp;
+            <a href="/job">More</a>
+            &nbsp;&nbsp;---------
+        </span>
     </div>
-  </div>
-  <!-- /.modal -->
-  <div class="modal-fullscreen" style="display: none">
-    <button type="button" class="close">
-      ×</button>
-    <div class="modal-fullscreen-content">
-      <div class="modal-fullscreen-header"></div>
-      <div class="modal-fullscreen-body"></div>
-      <div class="modal-fullscreen-footer"></div>
+    <div class="container text-center paddTop1">
+        <div class="row" id="jobData">
+            <div class="col-md-3 bgColor2 marginTop1">
+                <h5 id="jobTitleA">APP前端开发实习定岗生</h5>
+                <h6 id="jobInfoA">2016-04-08</h6>
+                <p id="jobDesA">
+                    负责公司网站的各个板块内容的规划和设计；
+                    负责公司网站内容的编辑及论坛等日常管理；
+                    负责网站信息内容的更新和维护。
+                </p>
+            </div>
+            <div class="col-md-4 col-md-offset-1 bgColor2 paddAll6">
+                <h5 id="jobTitleB">前端开发工程师</h5>
+                <h6 id="jobInfoB">2016-04-08</h6>
+                <p id="jobDesB">
+                    参与项目需求分析和设计；
+                    完成软件系统代码的实现，编写代码注释和开发文档；
+                    配合项目经理完成相关任务目标；
+                    具有很强的学习和独立分析能力、工作责任心、良好的沟通能力和团体合作精神。
+                </p>
+            </div>
+            <div class="col-md-3 col-md-offset-1 bgColor2 marginTop">
+                <h5 id="jobTitleC">混合开发工程师</h5>
+                <h6 id="jobInfoC">2015-05-05</h6>
+                <p id="jobDesC">
+                    负责APP页面切图，并使用HTML5、CSS3进行页面实现；
+                    负责根据后端接口实现前端页面逻辑；
+                    负责APP版本的更新和维护。
+                </p>
+            </div>
+        </div>
     </div>
-  </div>
-  <!-- Alert Modal -->
-  <div class="modal fade" id="alertModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
-            ×</button>
-          <h4 class="modal-title" id="H1">
-            提示</h4>
-        </div>
-        <div class="modal-body">
-
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-primary" onclick="$(&#39;#alertModal&#39;).modal(&#39;hide&#39;)">
-            确定</button>
-        </div>
-      </div>
-      <!-- /.modal-content -->
-    </div>
-    <!-- /.modal-dialog -->
-  </div>
-  <!-- /.Alert Modal -->
-</form>
-
-<div class="site-tips-container fullscreen-fix"></div>
-<div class="container">
-  <div class="row hidden-md hidden-lg">
-    <div class="col-xs-12">
-      <div class="panel" style="margin-bottom: 8px">
-        <div class="panel-body">
-          <p><span class="glyphicon glyphicon-earphone"></span>
-            联系电话</p>
-          <p>服务时间：</p>
-          <p>周一至周日，早上9点至晚上9点</p>
-          <p>021-61911383</p>
-        </div>
-      </div>
-      <div class="panel hidden" style="margin-bottom: 8px">
-        <div class="panel-body">
-          <p><span class="glyphicon glyphicon-comment"></span>
-            在线客服</p>
-          <p>点击<a href="http://www.veuts.com/index.aspx###"><u>此处</u></a>，联系在线客服</p>
-        </div>
-      </div>
-      <div class="panel hidden">
-        <div class="panel-body">
-          <p><span class="glyphicon glyphicon-envelope"></span>
-            投诉与建议</p>
-          <p>您对我们的服务不满意？您想对我们的网站建设提出意见？点击<a href="http://www.veuts.com/index.aspx###"><u>此处</u></a>，将您的投诉与建议反馈给我们</p>
-        </div>
-      </div>
-    </div>
-  </div>
 </div>
 
-<!--尾部-->
-{{> footer}}
+{{#extend "scripts"}}
+    <script>
+        $(function () {
+            //设置轮播图时间
+            $('#myCarousel').carousel({
+                interval: 3000
+            });
+            //加载新闻
+            getNews();
+            //加载招聘
+            //getJob();
+        })
+        function getNews() {
+            my.ajax({
+                url: '/news',
+                success: function (data) {
+                    var data = data.data;
+                    if (data.length == 0) {
+                        $('#newsData').html('敬请期待');
+                    } else {
+                        var i = data.length - 1;
+                        $('#newsTitle').html(data[i].title);
+                        var scope = '院系新闻';
+                        if (data[i].scope == 0) {
+                            scope = '校级新闻';
+                        }
+                        var str = '发布日期：' + my.toDateStr(data[i].createdAt) + '  新闻来源：' + scope;
+                        $('#newsInfo').html(str);
+                        $('#newsDes').html(data[i].description);
+                    }
+                },
+                error: function () {
+                    $.danger('网络异常，请联系管理员！');
+                }
+            });
+        }
+        function getJob(){
+            my.ajax({
+                url: '/job',
+                success: function (data) {
+                    var data = data.data;
+                    if(data.length < 3){
+                        $('#jobData').html('敬请期待');
+                    }else {
+                        var a = data.length - 1;
+                        $('#jobTitleA').html(formatStr(data[a].title));
+                        var str = '发布日期：' + my.toDateStr(data[a].createdAt);
+                        $('#jobInfoA').html(str);
+                        $('#jobDesA').html(formatStr3(data[a].content));
+                        var b = data.length - 2;
+                        $('#jobTitleB').html(formatStr(data[b].title));
+                        var str = '发布日期：' + my.toDateStr(data[b].createdAt);
+                        $('#jobInfoB').html(str);
+                        $('#jobDesB').html(formatStr3(data[b].content));
+                        var c = data.length - 3;
+                        $('#jobTitleC').html(formatStr(data[c].title));
+                        var str = '发布日期：' + my.toDateStr(data[c].createdAt);
+                        $('#jobInfoC').html(str);
+                        $('#jobDesC').html(formatStr3(data[c].content));
 
-<!--尾部静态文件-->
-{{> foot_static}}
-
-</body>
-</html>
+                    }
+                },
+                error: function () {
+                    $.danger('网络异常，请联系管理员！');
+                }
+            });
+        }
+    </script>
+{{/extend}}

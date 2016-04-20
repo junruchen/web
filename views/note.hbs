@@ -1,0 +1,95 @@
+<div class="marginLR marginBottom">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-3">
+                <div class="bgColor textColor2 marginTop fontSize2 paddAll1">假条审批</div>
+                <div class="textColor borderStyle1">
+                    <ul class="nav nav-stacked">
+                        <li class="active"><a href="/note">我的假条</a></li>
+                        <li><a href="/note/add">请假申请</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="textColor paddTop col-md-9">
+                <div class="borderStyle row">
+                    <div class="col-sm-2 paddTop2 paddBottom2">
+                        <span class="h4 textColor">我的假条</span>
+                    </div>
+                </div>
+                <ul class="fontSize1 list" id="noteList">
+                </ul>
+                <div class="text-center" id="changePage">
+                    <div class="hidden-xs">
+                        <ul class="paginationM">
+                            <li><a href="#">&laquo;第一页</a></li>
+                            <li class="active"><a href="#">1</a></li>
+                            <li class="disabled"><a href="#">最后一页&raquo;</a></li>
+                        </ul>
+                    </div>
+
+                    <div class="visible-xs">
+                        <ul class="pagerM">
+                            <li class="previous"><a href="#">&laquo;上一页</a></li>
+                            <li class="next"><a href="#">下一页&raquo;</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{{#extend "scripts"}}
+    <script>
+        $(function () {
+            search()
+        });
+        function search() {
+            my.ajax({
+                url: '/note',
+                success: function (data) {
+                    var data = data.data;
+                    if(data.length == 0){
+                        var str = '<li class="paddTop"><span>暂无数据</span></li>';
+                        $('#noteList').prepend(str);
+                        $('#changePage').addClass('hidden');
+                    }else{
+                        $('#noteList').empty();
+                        for(var i = 0; i < data.length; i++){
+                            var str = '<li class="paddTop">'+
+                                    '<a href="/note/detail/' + data[i]._id + '"><span>{{normal_user.name}}</span> 的请假单</a>'+
+                                    '<span class="textColor1 pull-right paddLeft">'+my.toDateStr(data[i].createdAt)+'</span>'+
+                                    '<span class="pull-right">'+noteStatus[data[i].status]+'</span>'
+                            if(data[i].status == 0 || data[i].status == 2){
+                                str = str + '<span class="pull-right"><a href="javascript:del(\'' + data[i]._id + '\');">删除&nbsp;</a></span>'
+                            }
+                            str = str + '</li>';
+                            $('#noteList').prepend(str);
+                        }
+                    }
+                },
+                error: function () {
+                    $.danger('网络异常，请联系管理员！');
+                }
+            });
+        }
+
+        function del(id) {
+            bootbox.confirm("您确定要删除吗？", function (result) {
+                if (result) {
+                    my.ajax({
+                        url: '/note/del/' + id,
+                        data: {id:id},
+                        success: function () {
+                            $.success('操作成功', null, null, function () {
+                                window.location.reload();
+                            });
+                        },
+                        error: function () {
+                            $.danger('网络异常，请联系管理员！');
+                        }
+                    });
+                }
+            });
+        }
+    </script>
+{{/extend}}

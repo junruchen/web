@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>学生信息管理平台</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" charset="utf-8">
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="/sys/signin.css" rel="stylesheet">
+    <link href="css/common.css" rel="stylesheet">
+    <link href="/sys/common.css" rel="stylesheet">
+</head>
+<body>
+
+    <div class="container">
+        <form class="form-signin">
+            <h2 class="form-signin-heading">学生信息管理平台</h2>
+            <input type="text" id="inputUsername" class="form-control" name="stid" placeholder="用户名" required autofocus>
+            <input type="password" id="inputPassword" class="form-control" name="password" placeholder="密码" required>
+            <button class="btn btn-lg btn-primary btn-block" id="submit" type="button">登录</button>
+        </form>
+    </div>
+    <script src="/sys/jquery.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="/sys/common.js"></script>
+    <script>
+        var login = function () {
+            var userName = $.trim($('input[name=stid]').val());
+            var passWord = $.trim($('input[name=password]').val());
+            if(!userName){
+                $.warning('请输入用户名');
+                return;
+            }
+            if(!passWord){
+                $.warning('请输入密码');
+                return;
+            }
+            my.ajax({
+                url: '/login',
+                data: $("form").serialize(),
+                success: function () {
+                    window.location = '/';
+                }
+            });
+
+        };
+
+        $(document).bind('keyup', function (event) {
+            if (event.keyCode == "13") {
+                login();
+            }
+        });
+
+        $('#submit').click(function () {
+            login();
+        });
+    </script>
+</body>
+</html>
